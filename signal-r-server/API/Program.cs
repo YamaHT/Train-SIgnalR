@@ -12,7 +12,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:3000")
        .AllowAnyMethod()
-       .AllowAnyHeader();
+       .AllowAnyHeader()
+       .AllowCredentials();
     });
 });
 
@@ -24,12 +25,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(apiPolicy);
-app.UseApplicationHubs();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseApplicationHubs();
 
 app.Run();
