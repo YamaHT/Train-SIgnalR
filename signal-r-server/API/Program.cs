@@ -1,13 +1,11 @@
+﻿using API;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var apiPolicy = "SignalR-policy";
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddInfrastructureService();
+builder.Services.AddWebAPIService();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(apiPolicy, policy =>
@@ -19,8 +17,6 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,6 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(apiPolicy);
+app.UseApplicationHubs();
 
 app.UseHttpsRedirection();
 
