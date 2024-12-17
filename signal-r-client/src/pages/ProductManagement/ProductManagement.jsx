@@ -14,7 +14,7 @@ const ProductManagement = () => {
 
 	useEffect(() => {
 		const connection = SignalRService.ProductHub
-		connection.start().then(() => connection.invoke('GetProductsAsync'))
+		connection.invoke('GetProductsAsync')
 		connection.on('GetProducts', (products) => {
 			setProducts(products)
 		})
