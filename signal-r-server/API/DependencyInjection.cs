@@ -24,7 +24,7 @@ namespace API
 
         public static WebApplication UseApplicationHubs(this WebApplication app)
         {
-            app.MapHub<ProductHub>("/product");
+            app.MapHub<ProductHub>("/productHub");
 
             return app;
         }

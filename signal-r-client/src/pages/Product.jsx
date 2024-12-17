@@ -1,19 +1,13 @@
-import { HubConnectionBuilder } from '@microsoft/signalr'
 import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { Constraints } from 'src/utils/Constraints'
+import { SignalRService } from 'src/service/SignalRService'
 
 const Product = () => {
 	const [products, setProducts] = useState([])
 
 	useEffect(() => {
-		const connection = new HubConnectionBuilder()
-			.withUrl(Constraints.BASE_URL + '/product')
-			.withAutomaticReconnect()
-			.build()
-
+		const connection = SignalRService.ProductHub
 		connection.start().then(() => connection.invoke('GetProductsAsync'))
-
 		connection.on('GetProducts', (products) => {
 			setProducts(products)
 		})
