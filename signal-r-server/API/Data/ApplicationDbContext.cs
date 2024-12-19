@@ -7,7 +7,7 @@ namespace API.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=TrainSignalR;Integrated Security=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=192.168.1.157,1433;Database=AdvancedNetTraining;User Id=sa;Password=Tinhroz123@;Integrated Security=False;TrustServerCertificate=True");
         }
 
         public DbSet<Product> Product { get; set; } = null!;

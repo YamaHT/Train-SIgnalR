@@ -9,6 +9,12 @@ namespace API.Controllers
     [ApiController]
     public class ProductController(ApplicationDbContext _dbContext) : ControllerBase
     {
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return Ok(_dbContext.Product);
+        }
+
         [HttpPost]
         public IActionResult Add([FromBody] Product product) {
             _dbContext.Product.Add(product);
