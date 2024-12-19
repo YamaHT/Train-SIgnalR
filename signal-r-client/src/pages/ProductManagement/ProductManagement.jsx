@@ -36,35 +36,37 @@ const ProductManagement = () => {
 	return (
 		<>
 			<Button onClick={() => setOpenAdd(true)}>Add</Button>
-			<Table component={Paper} sx={{ width: '75%', mx: 'auto' }}>
-				<TableHead>
-					<TableRow>
-						<TableCell width={'20%'}>Id</TableCell>
-						<TableCell width={'20%'}>Name</TableCell>
-						<TableCell width={'20%'}>Description</TableCell>
-						<TableCell width={'20%'}>Price</TableCell>
-						<TableCell width={'20%'}></TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{products.map((product) => (
+			<Paper sx={{ width: '75%', mx: 'auto' }}>
+				<Table>
+					<TableHead>
 						<TableRow>
-							<TableCell>{product.id}</TableCell>
-							<TableCell>{product.name}</TableCell>
-							<TableCell>{product.description}</TableCell>
-							<TableCell>${product.price}</TableCell>
-							<TableCell>
-								<Button color='success' onClick={() => handleOpenUpdate(product)}>
-									Update
-								</Button>
-								<Button color='error' onClick={() => handleDelete(product.id)}>
-									Delete
-								</Button>
-							</TableCell>
+							<TableCell width={'20%'}>Id</TableCell>
+							<TableCell width={'20%'}>Name</TableCell>
+							<TableCell width={'20%'}>Description</TableCell>
+							<TableCell width={'20%'}>Price</TableCell>
+							<TableCell width={'20%'}></TableCell>
 						</TableRow>
-					))}
-				</TableBody>
-			</Table>
+					</TableHead>
+					<TableBody>
+						{products.map((product) => (
+							<TableRow key={product.id}>
+								<TableCell>{product.id}</TableCell>
+								<TableCell>{product.name}</TableCell>
+								<TableCell>{product.description}</TableCell>
+								<TableCell>${product.price}</TableCell>
+								<TableCell>
+									<Button color='success' onClick={() => handleOpenUpdate(product)}>
+										Update
+									</Button>
+									<Button color='error' onClick={() => handleDelete(product.id)}>
+										Delete
+									</Button>
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</Paper>
 			{openAdd && <AddProduct open={openAdd} handleClose={() => setOpenAdd(false)} />}
 			{openUpdate && (
 				<UpdateProduct

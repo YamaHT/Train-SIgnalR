@@ -14,26 +14,28 @@ const Product = () => {
 	}, [])
 
 	return (
-		<Table component={Paper} sx={{ width: '75%', mx: 'auto' }}>
-			<TableHead>
-				<TableRow>
-					<TableCell>Id</TableCell>
-					<TableCell>Name</TableCell>
-					<TableCell>Description</TableCell>
-					<TableCell>Price</TableCell>
-				</TableRow>
-			</TableHead>
-			<TableBody>
-				{products.map((product) => (
+		<Paper sx={{ width: '75%', mx: 'auto' }}>
+			<Table>
+				<TableHead>
 					<TableRow>
-						<TableCell>{product.id}</TableCell>
-						<TableCell>{product.name}</TableCell>
-						<TableCell>{product.description}</TableCell>
-						<TableCell>${product.price}</TableCell>
+						<TableCell>Id</TableCell>
+						<TableCell>Name</TableCell>
+						<TableCell>Description</TableCell>
+						<TableCell>Price</TableCell>
 					</TableRow>
-				))}
-			</TableBody>
-		</Table>
+				</TableHead>
+				<TableBody>
+					{products.map((product) => (
+						<TableRow key={product.id}>
+							<TableCell>{product.id}</TableCell>
+							<TableCell>{product.name}</TableCell>
+							<TableCell>{product.description}</TableCell>
+							<TableCell>${product.price}</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</Paper>
 	)
 }
 
